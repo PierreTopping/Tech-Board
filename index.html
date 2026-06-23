@@ -3,339 +3,447 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Tech-Board Story: Stranger Than Fiction</title>
-    <meta name="description" content="The true story of the most dramatic Greenfield Startup failure in British manufacturing history.">
+    <title>The Tech-Board Story</title>
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8000FF;
-            --background: #f8fafc;
-            --surface: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
+            --bg-primary: #f8fafc;
+            --bg-sidebar: #0f172a;
+            --sidebar-text: #94a3b8;
+            --sidebar-active: #38bdf8;
+            --text-main: #334155;
+            --text-title: #1e293b;
+            --accent: #0284c7;
             --border: #e2e8f0;
-            --sidebar-width: 260px;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--background);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
             color: var(--text-main);
             display: flex;
             min-height: 100vh;
+            line-height: 1.6;
         }
 
-        /* Responsive Sidebar Navigation */
+        /* Sidebar Navigation */
         aside {
-            width: var(--sidebar-width);
-            background: var(--surface);
-            border-right: 1px solid var(--border);
+            width: 280px;
+            background-color: var(--bg-sidebar);
+            color: #fff;
             display: flex;
             flex-direction: column;
             position: fixed;
             top: 0;
             bottom: 0;
             left: 0;
+            overflow-y: auto;
             z-index: 10;
         }
 
         .sidebar-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            background: #fafafa;
+            padding: 24px;
+            border-bottom: 1px solid #1e293b;
         }
 
-        .meta-stamp {
+        .sidebar-header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-header p {
             font-size: 0.75rem;
-            color: var(--text-muted);
-            line-height: 1.4;
+            color: var(--sidebar-text);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         nav {
-            flex: 1;
-            padding: 1rem 0;
-            overflow-y: auto;
+            padding: 16px 0;
+            flex-grow: 1;
         }
 
-        nav button {
-            width: 100%;
-            padding: 0.75rem 1.5rem;
-            background: none;
-            border: none;
-            text-align: left;
+        .nav-item {
+            display: block;
+            padding: 12px 24px;
+            color: var(--sidebar-text);
+            text-decoration: none;
             font-size: 0.9rem;
-            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s ease;
             cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
+            border-left: 4px solid transparent;
         }
 
-        nav button:hover, nav button.active {
-            background-color: #f1f5f9;
-            color: var(--primary);
-            font-weight: 600;
-            border-left: 4px solid var(--primary);
-            padding-left: 1.25rem;
+        .nav-item:hover {
+            color: #fff;
+            background-color: #1e293b;
         }
 
-        /* Main Container layout */
+        .nav-item.active {
+            color: var(--sidebar-active);
+            background-color: #1e293b;
+            border-left-color: var(--sidebar-active);
+        }
+
+        /* Main Content Container */
         main {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 2.5rem;
-            max-width: 1200px;
+            margin-left: 280px;
+            flex-grow: 1;
+            padding: 40px;
+            max-width: 1000px;
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 1.5rem;
-            margin-bottom: 2rem;
+        article {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
         }
 
-        .brand h1 {
-            color: var(--secondary);
-            font-size: 2.2rem;
+        .chapter-title {
+            font-size: 2.25rem;
+            color: var(--text-title);
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .chapter-subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
             margin-bottom: 0.5rem;
         }
 
-        .brand em {
-            font-family: Georgia, serif;
-            color: var(--text-muted);
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--border);
+            margin: 32px 0;
         }
 
-        .tagline {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 1rem;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            border-left: 4px solid #ef4444;
+        .quote-block {
+            background-color: #f1f5f9;
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 24px 0;
+            font-style: italic;
+            border-radius: 0 4px 4px 0;
         }
 
-        /* Structural Cards for App Views */
-        .view-content {
-            display: none;
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            border: 1px solid var(--border);
-            animation: fadeIn 0.3s ease-in-out;
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: #64748b;
+            text-align: center;
         }
 
-        .view-content.active {
-            display: block;
-        }
-
-        /* Modern Tables styling */
+        /* Table Styling for WATN and Data sections */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1.5rem;
+            margin: 24px 0;
+            font-size: 0.95rem;
         }
 
         th, td {
-            padding: 1rem;
+            padding: 12px 16px;
             text-align: left;
             border-bottom: 1px solid var(--border);
         }
 
         th {
-            background-color: #f8fafc;
+            background-color: #f1f5f9;
+            color: var(--text-title);
             font-weight: 600;
         }
 
-        tr:hover {
+        tr:hover td {
             background-color: #f8fafc;
         }
 
-        /* Utility Badges */
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            font-size: 0.75rem;
-            font-weight: bold;
-            border-radius: 4px;
-            background: #e2e8f0;
+        /* Placeholder block for images */
+        .image-placeholder {
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            padding: 24px;
+            text-align: center;
+            border-radius: 6px;
+            color: #64748b;
+            margin: 20px 0;
+            font-size: 0.9rem;
         }
-        .badge-found { background: #dcfce7; color: #166534; }
-        .badge-alert { background: #fee2e2; color: #991b1b; }
 
-        /* Media queries for responsivity */
+        /* Responsive Breakpoints */
         @media (max-width: 768px) {
-            body { flex-direction: column; }
-            aside { width: 100%; position: relative; height: auto; }
-            main { margin-left: 0; padding: 1.5rem; }
-            header { flex-direction: column; gap: 1rem; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+            body {
+                flex-direction: column;
+            }
+            aside {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            main {
+                margin-left: 0;
+                padding: 16px;
+            }
+            article {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar Navigation Layout -->
     <aside>
         <div class="sidebar-header">
-            <p class="meta-stamp"><strong>Edition 1</strong><br>Circulation: Immoral<br>Feb 8, 2001</p>
+            <h1>The Tech-Board Story</h1>
+            <p>Greenfield Startup Failure</p>
         </div>
-        <nav id="app-nav">
-            <button data-target="main-page" class="active">Main Page</button>
-            <button data-target="imperial-road">Imperial Road</button>
-            <button data-target="enterprise-house">Enterprise House</button>
-            <button data-target="into-operation">Into Operation</button>
-            <button data-target="gates-close">The Gates Close</button>
-            <button data-target="where-are-they">Where Are They Now?</button>
-            <button data-target="authors">About The Authors</button>
-        </nav>
+        <nav id="sidebar-nav">
+            </nav>
     </aside>
 
-    <!-- Main Content Workspace -->
     <main>
-        <header>
-            <div class="brand">
-                <h1>The Tech-Board Story</h1>
-                <em>(Stranger than fiction)</em>
-            </div>
-        </header>
-
-        <div class="tagline">
-            The true story of the most dramatic "Greenfield Startup" failure in British manufacturing history.
-        </div>
-
-        <!-- Section: Main Page -->
-        <section id="main-page" class="view-content active">
-            <h2>Welcome</h2>
-            <p style="margin: 1rem 0; line-height: 1.6;">
-                At the time it was thought to be the largest venture-capital backed Greenfield manufacturing startup in British History. In 1993 one man raised over £35 million from the City of London to build a new manufacturing plant in Wales. Over the next 8 years the plant was built, started production, went into receivership three times, and finally was shut down for the final time.
-            </p>
-            <p style="margin: 1rem 0; line-height: 1.6;">
-                We lived through the madness, and thought that we should commit our memories to a web page, for posterity. 
-            </p>
-            <div style="background: #f1f5f9; padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
-                <h4>Latest Rumour Mill Archive</h4>
-                <p style="font-size: 0.9rem; margin-top: 0.5rem;"><strong>Enron Europe Status:</strong> Receivers called in. Interestingly, the former chairman of Enron Europe was also the old chairman of Tech-Board, Mr. Ralph Hodge.</p>
-            </div>
-        </section>
-
-        <!-- Section: Imperial Road -->
-        <section id="imperial-road" class="view-content">
-            <h2>Imperial Road – The Madness Starts</h2>
-            <p style="margin: 1rem 0; line-height: 1.6;">
-                Malcolm found his initial backer in Peter Learmond, a man who made his millions creating Sheerness Steel and owned a converted tram-shed in Imperial Road, London. 
-            </p>
-            <h3>Ongoing Sagas</h3>
-            <p style="margin: 0.5rem 0 1.5rem 0; line-height: 1.6; color: var(--text-muted)">
-                From sudden high-volume time checks ("WHAT'S THE TIME?") to the legendary Malaysian nightie export legal dispute, the London setup laid down a colorful blueprint for what was to follow.
-            </p>
-        </section>
-
-        <!-- Section: Enterprise House -->
-        <section id="enterprise-house" class="view-content">
-            <h2>Enterprise House (Rassau)</h2>
-            <p style="margin: 1rem 0; line-height: 1.6;">
-                A couple of weeks after the Deal was signed, the team started commuting to Wales. The Mill was to be built on the Rassau Industrial Estate, near Ebbw Vale. Temporary space was secured at Enterprise House.
-            </p>
-            <blockquote style="border-left: 4px solid var(--secondary); padding-left: 1rem; margin: 1.5rem 0; font-style: italic;">
-                "In the original business plan, there was a lot written about employing modern management practices – a 'single status' company. Then the office furniture arrived: a really big desk for Malcolm, a big one for Tony, and smaller ones for everyone else. This was a defining moment."
-            </blockquote>
-        </section>
-
-        <!-- Section: Into Operation -->
-        <section id="into-operation" class="view-content">
-            <h2>Into Operation</h2>
-            <p style="margin: 1rem 0; line-height: 1.6;">
-                Following the opening, a stringent 24-hour baseline test was required by the financing banks. Miraculously, the persistent structural board wave disappeared exactly for the 24-hour baseline performance trial window, unlocking the capital release sequence perfectly before immediately reverting right back to a wavy production standard post-evaluation.
-            </p>
-        </section>
-
-        <!-- Section: Gates Close -->
-        <section id="gates-close" class="view-content">
-            <h2>...And The Gates Close</h2>
-            <p style="margin: 1rem 0; line-height: 1.6;">
-                One afternoon, everyone was called out to the car park. A list of names was read out to stand aside; the remainder were informed that the operation had suddenly collapsed into immediate receivership over a single banking cycle.
-            </p>
-        </section>
-
-        <!-- Section: Where Are They Now -->
-        <section id="where-are-they" class="view-content">
-            <h2>Where Are They Now?</h2>
-            <p style="color: var(--text-muted); margin-bottom: 1rem;">Tracking down historical crew data points. Submit updates via the guestbook mechanism.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Status / Last Known Location</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Malcolm Graham</strong></td>
-                        <td><span class="badge badge-found">Found</span> Located running woodland camping environments in Kent.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Bill Jackson</strong></td>
-                        <td>General Manager of Recticel Foam in Brynmawr.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Neil Griffiths</strong></td>
-                        <td>Production facilities in Cardiff.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Simon Fitzgerald</strong></td>
-                        <td>Emigrated to Canada to continue hardboard sector operations.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Computer Muppets</strong></td>
-                        <td><span class="badge badge-alert">Bust</span> Merrit's went under in 2000.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Section: Authors -->
-        <section id="authors" class="view-content">
-            <h2>About The Authors</h2>
-            <p style="margin: 1rem 0; line-height: 1.6;">
-                This project was brought to you by <strong>Guy Spaven</strong> and <strong>Pierre Topping</strong>, who handled implementation cycles for Tech-Board's foundational management database environments (SAP R/3 structures) during the operations' survival window.
-            </p>
-        </section>
+        <article id="content-area">
+            </article>
+        
+        <footer>
+            This compilation is dedicated to the memory of Mr. Mike Parrott. Compiled originally by Guy Spaven & Pierre Topping.
+        </footer>
     </main>
 
-    <!-- Vanilla State Routing Controller Logic -->
     <script>
-        document.getElementById('app-nav').addEventListener('click', function(e) {
-            const targetButton = e.target.closest('button');
-            if (!targetButton) return;
+        // Compiled dataset containing complete text nodes extracted from your uploaded htm assets
+        const chapters = {
+            index: {
+                title: "Introduction",
+                subtitle: "The Largest Venture Capital Greenfield Startup Failure in British History",
+                content: `
+                    <p>Welcome to the true chronicle of Tech-Board, based in Rassau, near Ebbw Vale, South Wales. This site serves as a complete history tracking the monumental task of raising finance, constructing a state-of-the-art hardboard production facility, and mapping out its subsequent serialization of demises.</p>
+                    <div class="quote-block">
+                        "Stranger than fiction: A story of ambition, vast investment, structural strains, engineering hurdles, and an industrial park that saw its gates closed over and over again."
+                    </div>
+                    <p>This workspace has been redesigned to map every single narrative thread, tracking how an aging UK board sector tried to reinvent itself in the Welsh valleys, ending in systemic receivership. Use the sidebar to step sequentially through the historical chapters from 1989 through to the aftermath of 2001.</p>
+                `
+            },
+            uk_hard: {
+                title: "1. UK Hardboard",
+                subtitle: "The Pre-History & Catalyst in Sittingbourne, Kent",
+                content: `
+                    <p>In 1989, the aging UK Hardboard plant in Kemsley was abruptly shut down. The primary, fatal mechanism was a sudden sky-rocketing of the plant's annual electricity bills by several hundred percent, wiping out all operational profitability overnight.</p>
+                    <p>What baffled the workforce was two core facts during that fateful year:</p>
+                    <ul>
+                        <li>No additional energy was consumed compared to historical baselines.</li>
+                        <li>The baseline market tariff price of industrial energy had not shifted.</li>
+                    </ul>
+                    <p>Shortly after the closure, the remaining integrated paper mills at Kemsley were sold off to a New Zealand conglomerate, Fletcher Challenge. Redundant employees openly grew cynical, wondering if the financial mechanics were a corporate ploy to deliberately load fixed overhead costs onto the hardboard division to artificially polish the balance sheet of the paper mill for sale.</p>
+                    <p>Regardless of the underlying reality, Malcolm Graham was already drafting blueprints for a brand new, highly efficient greenfield hardboard production plant to break away from the constraints of Kemsley. The sudden closure acted as the definitive catalyst that pushed his quest into overdrive.</p>
+                `
+            },
+            malcy: {
+                title: "2. Malcy: The Wilderness Years",
+                subtitle: "1989 – 1992: Chasing the Capital",
+                content: `
+                    <p>Following the immediate fallout of the 1989 closure, the initial skeletal team—consisting of Malcolm, Sean, Bob, Graeme, Guy, and Hazel—scattered to balance survival with keeping the dream alive. Their primary task was iteratively polishing a complex industrial business plan and pitching to speculative financiers, including brief cross-border exploratory talks with potential backers in France.</p>
+                    <p>Between 1989 and mid-1992, Malcolm entered the "wilderness years." He moved through a revolving door of temporary financial sponsors who provided short-term office spaces, secretarial tools, and basic overheads while he continuous pitched the project to institutional capital groups.</p>
+                    <p>The breakthrough finally arrived in mid-1992. Word filtered back to the team that Malcolm had secured structural backing and anchored a central planning command outpost located on Imperial Road in Fulham, London.</p>
+                `
+            },
+            imp_rd: {
+                title: "3. Imperial Road",
+                subtitle: "The London Planning Outpost",
+                content: `
+                    <p>The strategic phase at Imperial Road formalized the corporate shell of Tech-Board. It was here that complex machinery contracts, European engineering timelines, and core organizational charting began to manifest. Key management characters were onboarded to steer the project toward physical reality:</p>
+                    <p><strong>Tony Read (Financial Director):</strong> Tony was attached early on during the Imperial Road tenure, managing the complex models required by venture capital funds. He committed to moving down to the Welsh valleys to live through the opening phases of operations.</p>
+                    <p><strong>Ted Ellis (HR Manager):</strong> Described as intensely and proudly Welsh, Ted entered the frame during the final closing months of the London office to lay the groundwork for local recruitment and labor contracts in Gwent.</p>
+                    <p><strong>Austin Slater:</strong> Re-appeared during the final months of planning at Imperial Road, coordinating machinery acquisition paths despite early structural friction.</p>
+                    <div class="image-placeholder">[Archival Reference: Embedded portraits of Tony Read, Ted Ellis, and Austin Slater were originally attached to this section]</div>
+                `
+            },
+            the_deal: {
+                title: "4. The Deal",
+                subtitle: "Overnight Closings and Corporate Tombstones",
+                content: `
+                    <p>The process of finalizing venture capital funding for an industrial operation of this scale is a gruelling exercise. After standard institutional due diligence loops spanning months, all counter-parties, underwriters, and legal teams converged to bind the structural contracts.</p>
+                    <p>Per investment banking tradition, the final signing session was orchestrated entirely overnight. Beginning at 7:00 PM, the teams endured a marathon legal check that stretched until 5:30 AM the following morning as the sun began to rise.</p>
+                    <p>The primary financial foundation was anchored by **Commander Learmond** and institutional venture capital giant **3i**. To mark the closing, the traditional champagne was distributed along with Lucite commemorative corporate "Tombstones" celebrating what was, at that historical juncture, the largest individual venture-capital backed greenfield manufacturing startup in British history.</p>
+                    <div class="image-placeholder">[Archival Reference: Pictures of the 3i Tombstone & legal signing logs FTP1-19071994 / FTP2-19071994]</div>
+                `
+            },
+            ent_house: {
+                title: "5. Enterprise House",
+                subtitle: "Establishing the Beachhead & Learning Swedish",
+                content: `
+                    <p>With multi-million pound funding locked, operations relocated to South Wales, setting up a physical beachhead at Enterprise House in the Rassau Industrial Estate. The environment was intense, dominated by technical drawings, localized mapping, and immediate vendor onboarding cycles.</p>
+                    <p>Because the primary raw wood processing machinery and core defibrator/refiner assets were sourced from Scandinavian manufacturers (such as Sunds Defibrator), the startup team was subjected to rapid Swedish language training courses to ease engineering data transfers. The training sessions led to classic internal office jokes as Welsh engineering staff clashed phonetically with complex Scandinavian technical phrases.</p>
+                    <p>Concurrently, the team faced its first community management challenge: local residents immediately mobilized a committee to challenge a 24-hour manufacturing facility operating on their doorstep due to concerns over steam, sound, and effluent emissions. Malcolm managed to ease local anxiety during town-hall sessions by famously asserting that the exhaust of a modern refiner system didn't smell of industrial chemicals, but rather shared an olfactory profile with "baking apple pie."</p>
+                `
+            },
+            pant: {
+                title: "6. Pantybaileau House",
+                subtitle: "Communal Living & The 'News of the World' Incident",
+                content: `
+                    <p>During the intense pre-production and construction phases, commuting executives and engineers shared a communal residence at Pantybaileau House ("Panty"). The historic property provided a lively backdrop to off-duty startup life, managed by local hosts John and Chris.</p>
+                    <p>The house achieved legendary status inside the company history following an unexpected exposé in the *News of the World* tabloid Sunday edition. Titled "To the Manor Porn," the article detailed a covert reporter answering a magazine advertisement which led them to a Friday night adult swinger club hosted directly within the property's bar room.</p>
+                    <p>The investigative journalist surreptitiously pocketed an anonymous comedic photo hanging on the back of the property's restroom door showing staff dressed up in theatrical costumes. It later emerged that the hosts had innocent rented the bar out to local fortune-telling acquaintances on Friday evenings, entirely unaware that the space was being repurposed for adult events. Because the core Tech-Board management team worked a strict Monday-to-Thursday commuting schedule, they entirely missed the events, only discovering them via the Sunday morning papers.</p>
+                `
+            },
+            the_build: {
+                title: "7. The Build",
+                subtitle: "Assembling the Infrastructure",
+                content: `
+                    <p>The physical construction of the Rassau mill was a major civil engineering feat. The layout required precision handling of massive heavy equipment loads, custom foundation slabs for the refining plant, and complex assembly lines.</p>
+                    <p>A central technical milestone was the successful installation of the main **headbox**, overseen by specialized engineers. This critical asset was responsible for distributing the slurry of ground-up wood fibers evenly across the forming line to ensure precise board thickness control.</p>
+                    <div class="image-placeholder">[Archival Reference: Original site layout maps, structural engineering photos of the Headbox, and RealPlayer tracking videos are tied to this construction chapter]</div>
+                `
+            },
+            tgopen: {
+                title: "8. The Grand Opening",
+                subtitle: "Dignitaries, Suits, and Industrial Optimism",
+                content: `
+                    <p>The completion of the mill culminated in an official Grand Opening ceremony. Local political figures, regional development officers from the Welsh Development Agency (WDA), and institutional banking delegates arrived in force to toast the arrival of long-term employment in the Ebbw Vale valley.</p>
+                    <p>The press day featured formal speeches by the Mayor of Gwent, alongside leadership walkthroughs of the automated press lines. Despite the corporate optimism and crisp suits captured in local press clippings, the facility was already facing hidden operational and cash-flow pressures behind the scenes.</p>
+                `
+            },
+            into: {
+                title: "9. Into Operation",
+                subtitle: "Engineering Friction and Cash Flow Realities",
+                content: `
+                    <p>Transitioning from a dry construction phase into 24-hour live industrial operations immediately exposed severe structural strains. The mill entered a grueling period marked by constant system cleanups, engineering overruns, and persistent output quality issues.</p>
+                    <p>The core issues that defined early operations included:</p>
+                    <ul>
+                        <li><strong>The Annual Hours Contract Failure:</strong> A massive structural error in the drafting of shift worker contracts resulted in the company paying out thousands of unexpected, premium overtime hours, severely crippling early cash-flow forecasts.</li>
+                        <li><strong>Production Bottlenecks:</strong> Engineering teams led by figures like Mike Thomas practically lived on-site, dealing with constant blockages. Early board output failed UK market tolerances and had to be sold off at a loss to alternative buyers in Spain.</li>
+                    </ul>
+                    <p>As financial pressures mounted, institutional backers moved to restructure leadership. Malcolm Graham was removed as Managing Director and replaced by industry executive George Anderson.</p>
+                `
+            },
+            intor: {
+                title: "10. ...And The Gates Close",
+                subtitle: "The First Car Park Receivership",
+                content: `
+                    <p>The sudden end of the initial Tech-Board corporate iteration arrived abruptly one afternoon. Without warning, the entire workforce was ordered to assemble outside in the main car park.</p>
+                    <p>A senior manager stepped out with a spreadsheet and systematically read aloud a list of names. Those called were instructed to move to one side; the remaining group was flatly informed that the banks had pulled liquidity overnight, the mill was in receivership, and their employment was terminated effective immediately.</p>
+                    <p>As George Anderson exited the site, he assured the remaining core engineering staff that he would return to resurrect the asset. He fulfilled that promise shortly thereafter by introducing a powerful new corporate savior: **Enron**.</p>
+                `
+            },
+            intor2: {
+                title: "11. ...And Close Again",
+                subtitle: "The Enron Corporate Bailout & Controlled Closure",
+                content: `
+                    <p>Under Enron's stewardship, the plant was revived, but under an entirely different strategic agenda. Enron fully honored outstanding local debts, ensuring a controlled, orderly wind-down rather than a chaotic default.</p>
+                    <p>It quickly became apparent to industrial observers that Enron's core interest was not necessarily the long-term processing of hardboard fiber, but rather the strategic value of the land acreage behind the facility, which was perfectly situated to build a major gas-fired power station. When wider macro-economic shifts altered Enron's project pipeline, they executed a clean, systematic closure of the manufacturing lines.</p>
+                `
+            },
+            intor3: {
+                title: "12. ...And Again!",
+                subtitle: "The Imperial Boards Management Buyout Failure",
+                content: `
+                    <p>The third major iteration of the mill was born from a determined under-financed management buyout led by Engineering Manager Huw Lewis. Huw had been planning a takeover scenario well before Enron's exit, rallying a dedicated group of workers under a new corporate banner: **Imperial Boards**.</p>
+                    <p>The name itself was a direct nod to Imperial Road in Fulham, tracking back to the original birthplace of Tech-Board's initial corporate charter. While internal morale and team spirit among the shop-floor teams reached historic highs, the operation was fundamentally crippled by a severe lack of working capital.</p>
+                    <p>Without deep institutional cash reserves to weather raw wood feedstock spikes and machinery maintenance cycles, the end was mathematically inevitable. For the final time, the car park was used to break the bad news to the workforce, and the gates were locked permanently.</p>
+                `
+            },
+            swww: {
+                title: "13. Why Did It Fail?",
+                subtitle: "Post-Mortem Analyses by Guy and Pierre",
+                content: `
+                    <p>Years after the dust settled, the site's original webmasters and IT leads, Guy Spaven and Pierre Topping, mapped out their distinct technical theories behind the systemic collapse of the venture:</p>
+                    <p><strong>Guy's Technical Theory:</strong> Guy argued that the project suffered from catastrophic budget stagnation during its long pre-history. Because Malcolm spent years locking down capital, the equipment specifications had to be continually downsized to fit an outdated, frozen budget while market prices rose, resulting in an under-engineered plant trying to run over-engineered goals.</p>
+                    <p><strong>Pierre's Operational Theory:</strong> Pierre pointed straight to rapid, unchecked overhead spend. He noted that localized technician and operator salaries were set far above regional manufacturing benchmarks, which when coupled with the disastrous structural error in the annual hours contract loop, created an unsustainable burn rate that destroyed cash liquidity before production could stabilize.</p>
+                `
+            },
+            watn: {
+                title: "14. Where Are They Now?",
+                subtitle: "The Historic Employee Tracking Ledger",
+                content: `
+                    <p>The original site maintained an updated directory tracking the post-collapse paths of the characters who built and ran the mill:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name / Reference</th>
+                                <th>Tech-Board Role</th>
+                                <th>Post-Mill Status & Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Malcolm Graham</strong></td><td>Founder & Original MD</td><td>Venture capitalist champion. Top bloke.</td></tr>
+                            <tr><td><strong>Tony Read</strong></td><td>Financial Director</td><td>Remained famously cheerful through all structural crises.</td></tr>
+                            <tr><td><strong>Ted Ellis</strong></td><td>HR Manager</td><td>Moved onward through subsequent industrial turnarounds.</td></tr>
+                            <tr><td><strong>George Anderson</strong></td><td>Second MD</td><td>Brought in Enron; orchestrated the first restart path.</td></tr>
+                            <tr><td><strong>Huw Lewis</strong></td><td>Engineering Manager / MBO lead</td><td>Orchestrated the courageous Imperial Boards rescue attempt.</td></tr>
+                            <tr><td><strong>Mike Thomas</strong></td><td>Lead Plant Engineer</td><td>Famously never left the building during operational crises.</td></tr>
+                            <tr><td><strong>Guy Spaven</strong></td><td>IT Systems / SAP R/3 Lead</td><td>Relocated to Manchester; took up permanent role inside SAP.</td></tr>
+                            <tr><td><strong>Pierre Topping</strong></td><td>IT Manager / SAP Consultant</td><td>Moved to Compaq/HP systems in Bristol; resides in Tredegar.</td></tr>
+                            <tr><td><strong>Hwan Campbell</strong></td><td>Administrative Secretary</td><td>Transitioned into a local Higher Education Institute role.</td></tr>
+                            <tr><td><strong>Alwyn Butler</strong></td><td>Mill Operations</td><td>Moved to local employment at Tyves in Ebbw Vale.</td></tr>
+                        </tbody>
+                    </table>
+                `
+            }
+        };
 
-            // Update button active states
-            document.querySelectorAll('#app-nav button').forEach(btn => btn.classList.remove('active'));
-            targetButton.classList.add('active');
-
-            // Toggle view panels content
-            const targetId = targetButton.getAttribute('data-target');
-            document.querySelectorAll('.view-content').forEach(view => {
-                view.classList.remove('active');
-                if(view.id === targetId) {
-                    view.classList.add('active');
-                }
-            });
+        // Render Sidebar Navigation automatically from the chapter list
+        const navContainer = document.getElementById('sidebar-nav');
+        Object.keys(chapters).forEach((key, index) => {
+            const link = document.createElement('a');
+            link.classList.add('nav-item');
+            if(key === 'index') link.classList.add('active');
+            link.innerText = chapters[key].title;
+            link.addEventListener('click', () => switchChapter(key, link));
+            navContainer.appendChild(link);
         });
+
+        // Dynamic Page Swapping Engine
+        function switchChapter(chapterKey, element) {
+            // Update active states on sidebar links
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+
+            // Fade and reload content area
+            const area = document.getElementById('content-area');
+            const data = chapters[chapterKey];
+            
+            area.innerHTML = `
+                <h2 class="chapter-title">${data.title}</h2>
+                <div class="chapter-subtitle">${data.subtitle}</div>
+                <hr>
+                <div class="chapter-body">${data.content}</div>
+            `;
+            
+            // Auto scroll to top of page on mobile devices
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize view with main index data
+        switchChapter('index', document.querySelector('.nav-item'));
     </script>
 </body>
 </html>
