@@ -101,6 +101,50 @@
             color: var(--accent-red);
         }
 
+        /* Timeline Styling */
+        .timeline {
+            position: relative;
+            margin: 20px 0 10px 10px;
+            padding-left: 20px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-red);
+            border: 2px solid var(--bg-color);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #4cd137;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .timeline-content h4 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+
+        /* File Grid Styling */
         .file-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -191,12 +235,44 @@
 
     <main>
 
+        <!-- NEW HISTORY TIMELINE SECTION -->
+        <section id="company-history">
+            <h2>The Tech-Board Story</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">July 1994</div>
+                    <div class="timeline-content">
+                        <h4>The £40 Million Launch</h4>
+                        <p>Tech-Board Ltd secures a historic £35M+ management start-up investment package led by 3i plc, Rothschild Ventures, and RIT Capital. Built on the Rassau Industrial Estate in Ebbw Vale, South Wales, the pioneering hardboard manufacturing facility is celebrated nationally for breathing new life into the UK timber processing sector and providing roughly 200 crucial jobs to the local community.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1995 – 1997</div>
+                    <div class="timeline-content">
+                        <h4>Peak Plant Operations</h4>
+                        <p>Under the guidance of an elite engineering and leadership team, the highly automated production lines roll out major capacity orders. The facility successfully operates under high-visibility assembly floor management, establishing a tight-knit corporate community known for its vibrant staff culture, summer social gatherings, and local team environment.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">April 1998</div>
+                    <div class="timeline-content">
+                        <h4>Administrative Re-structuring</h4>
+                        <p>Navigating shifting manufacturing climates, the firm undertakes complex structural changes. Staffing adjustments pass through regional systems like the Tredegar Jobcentre alongside official Inland Revenue evaluations as corporate adjustments reshape internal plant infrastructure.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">June 2002 & Beyond</div>
+                    <div class="timeline-content">
+                        <h4>Evolution to Imperial Board</h4>
+                        <p>Marking the final archived chapters of the original plant timeline, operations shift transitions while maintaining industrial facility footprints under the legacy identity of Imperial Board Products Limited.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECTION 1 -->
         <section id="media-launch">
-            <h2>1994 Media & Financial Launch</h2>
-            <blockquote>
-                Historical documentation commemorating the massive £40m financing, equity splits, and national press coverage driving the Ebbw Vale start-up venture.
-            </blockquote>
+            <h2>1994 Media & Financial Launch Artifacts</h2>
             <div class="file-grid">
                 <div class="file-card">
                     <div>
