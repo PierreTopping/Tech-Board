@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech-Board Ltd — Historical Archive</title>
+    <meta name="description" content="Tech-Board: The true story of what was, at the time, the largest venture capital backed manufacturing startup in the UK. The site tells the story of raising finance, building the plant, and its demise.">
+    <title>Tech-Board — The Greenfield Startup Failure</title>
     <style>
         :root {
-            --bg-color: #12161a;
-            --card-bg: #1c232a;
+            --bg-color: #0f1216;
+            --card-bg: #171d24;
+            --accent-purple: #9b51e0;
             --accent-red: #d9383a;
             --text-main: #f0f4f8;
             --text-muted: #a0aec0;
             --border-color: #2d3748;
+            --green-glow: #4cd137;
         }
 
         * {
@@ -25,70 +28,85 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            padding-bottom: 40px;
+            padding-bottom: 60px;
         }
 
         header {
-            background-color: #0b0d10;
-            padding: 30px 20px;
+            background-color: #07090c;
+            padding: 40px 20px;
             text-align: center;
-            border-bottom: 3px solid var(--accent-red);
+            border-bottom: 3px solid var(--accent-purple);
+            position: relative;
         }
 
-        .logo-area {
-            max-width: 500px;
-            margin: 0 auto 10px auto;
-            border: 2px solid #ffffff;
-            background: #ffffff;
-            padding: 10px;
-            border-radius: 4px;
+        .archive-meta {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .logo-title {
-            color: var(--accent-red);
-            font-family: "Georgia", serif;
-            font-size: 2rem;
+            color: var(--text-main);
+            font-family: "Century Schoolbook", Georgia, serif;
+            font-size: 2.5rem;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
-        .logo-sub {
-            color: #000000;
-            font-family: "Georgia", serif;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            border-top: 1px solid #000000;
-            margin-top: 5px;
-            padding-top: 5px;
+        .logo-title span {
+            color: var(--accent-purple);
         }
 
-        .tagline {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 10px;
+        .subtitle {
             font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        .alert-banner {
+            background: rgba(217, 56, 58, 0.15);
+            border: 1px solid var(--accent-red);
+            color: #ff6b6b;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 6px;
+            margin: 20px auto 0 auto;
+            max-width: 800px;
+            font-size: 0.95rem;
         }
 
         main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 15px;
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .intro-lead {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 35px;
+            color: #ffffff;
+            line-height: 1.4;
         }
 
         section {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
+            padding: 25px;
+            margin-bottom: 30px;
         }
 
         h2 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #ffffff;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             padding-bottom: 8px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
@@ -98,425 +116,232 @@
 
         h2::before {
             content: "▪";
-            color: var(--accent-red);
+            color: var(--accent-purple);
         }
 
-        /* Timeline Styling */
-        .timeline {
-            position: relative;
-            margin: 20px 0 10px 10px;
-            padding-left: 20px;
-            border-left: 2px solid var(--border-color);
+        h3 {
+            font-size: 1.15rem;
+            color: var(--green-glow);
+            margin: 20px 0 10px 0;
+            font-family: monospace;
         }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: -27px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--accent-red);
-            border: 2px solid var(--bg-color);
-        }
-
-        .timeline-date {
-            font-weight: bold;
-            color: #4cd137;
-            font-size: 0.95rem;
-            margin-bottom: 4px;
-        }
-
-        .timeline-content h4 {
-            color: #ffffff;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .timeline-content p {
+        p {
+            margin-bottom: 15px;
             color: #cbd5e0;
-            font-size: 0.9rem;
+            font-size: 0.98rem;
         }
 
-        /* File Grid Styling */
-        .file-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-
-        @media (min-width: 600px) {
-            .file-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .file-card {
-            background-color: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 15px;
+        .profile-block {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            gap: 20px;
+            align-items: flex-start;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--border-color);
         }
 
-        .file-name {
-            font-family: "Courier New", Courier, monospace;
-            font-size: 0.9rem;
-            color: #4cd137;
-            font-weight: bold;
-            word-break: break-all;
-            margin-bottom: 8px;
-        }
-
-        .archive-img {
-            width: 100%;
+        .profile-avatar {
+            width: 95px;
             height: auto;
-            max-height: 250px;
-            object-fit: contain;
-            background: #0b0d10;
-            border: 1px solid #2d3748;
+            border: 1px solid var(--border-color);
+            background: #000;
             border-radius: 4px;
-            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .profile-content {
+            flex-grow: 1;
+        }
+
+        .profile-content strong {
+            color: #fff;
             display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
         }
 
-        .file-desc {
-            font-size: 0.88rem;
-            color: var(--text-main);
-            margin-bottom: 8px;
+        .news-box {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid #00ffff;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 25px;
         }
 
-        .file-meta {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .news-box h4 {
+            color: #00ffff;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 6px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
-        blockquote {
-            background: rgba(217, 56, 58, 0.1);
-            border-left: 4px solid var(--accent-red);
-            padding: 12px;
-            margin: 15px 0;
-            font-size: 0.9rem;
-            color: #e2e8f0;
-            border-radius: 0 4px 4px 0;
+        .meta-footer-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 30px;
+            font-style: italic;
         }
 
         footer {
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-top: 40px;
-            padding: 20px;
+            font-size: 0.85rem;
+            margin-top: 50px;
+            padding: 25px;
             border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 600px) {
+            .profile-block {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-area">
-            <div class="logo-title">Imperial</div>
-            <div class="logo-sub">Board Products Limited</div>
+        <div class="archive-meta">8th February 2001 &bull; Edition 1 &bull; Circulation: Immoral</div>
+        <div class="logo-title"><span>T</span>he <span>T</span>ech-<span>B</span>oard <span>S</span>tory</div>
+        <div class="subtitle">(Stranger than fiction)</div>
+        
+        <div class="alert-banner">
+            Please note that this archive site is preserved for historical posterity.
         </div>
-        <div class="tagline">Tech-Board Corporate & Staff Asset Repository (1994 &ndash; 2002)</div>
     </header>
 
     <main>
 
-        <!-- NEW HISTORY TIMELINE SECTION -->
-        <section id="company-history">
-            <h2>The Tech-Board Story</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">July 1994</div>
-                    <div class="timeline-content">
-                        <h4>The £40 Million Launch</h4>
-                        <p>Tech-Board Ltd secures a historic £35M+ management start-up investment package led by 3i plc, Rothschild Ventures, and RIT Capital. Built on the Rassau Industrial Estate in Ebbw Vale, South Wales, the pioneering hardboard manufacturing facility is celebrated nationally for breathing new life into the UK timber processing sector and providing roughly 200 crucial jobs to the local community.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">1995 – 1997</div>
-                    <div class="timeline-content">
-                        <h4>Peak Plant Operations</h4>
-                        <p>Under the guidance of an elite engineering and leadership team, the highly automated production lines roll out major capacity orders. The facility successfully operates under high-visibility assembly floor management, establishing a tight-knit corporate community known for its vibrant staff culture, summer social gatherings, and local team environment.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">April 1998</div>
-                    <div class="timeline-content">
-                        <h4>Administrative Re-structuring</h4>
-                        <p>Navigating shifting manufacturing climates, the firm undertakes complex structural changes. Staffing adjustments pass through regional systems like the Tredegar Jobcentre alongside official Inland Revenue evaluations as corporate adjustments reshape internal plant infrastructure.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">June 2002 & Beyond</div>
-                    <div class="timeline-content">
-                        <h4>Evolution to Imperial Board</h4>
-                        <p>Marking the final archived chapters of the original plant timeline, operations shift transitions while maintaining industrial facility footprints under the legacy identity of Imperial Board Products Limited.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="intro-lead">
+            The true story of the most dramatic "Greenfield Startup" failure in British manufacturing history.
+        </div>
+
+        <!-- OVERVIEW SECTION -->
+        <section id="manifesto">
+            <h2>The History</h2>
+            <p>At the time it was thought to be the largest venture-capital backed Greenfield manufacturing startup in British History. In 1993 one man raised over £35 million from the City of London to build a new manufacturing plant in Wales. Over the next 8 years the plant was built, started production, went into receivership three times (some say twice...), and finally was shut down for the final time.</p>
+            <p>We lived through the madness, and thought that we should commit our memories to a web page, for posterity. If you invested in Tech Board, supplied equipment to Tech Board, or even worked for Tech Board, we hope you’ll find something that brings back a happy (?) memory.</p>
+            <p>Regards,<br><strong>Guy & Pierre</strong></p>
         </section>
 
-        <!-- SECTION 1 -->
-        <section id="media-launch">
-            <h2>1994 Media & Financial Launch Artifacts</h2>
-            <div class="file-grid">
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">FTP1-19071994.GIF</div>
-                        <img class="archive-img" src="Pictures/FTP1-19071994.GIF" alt="FTP1-19071994.GIF">
-                        <div class="file-desc">Financial Times clipping: "£40m Welsh plant is largest start-up venture" by Roland Adburgham & Richard Gourlay.</div>
-                    </div>
-                    <div class="file-meta">Type: Image Scan (FT)</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">FTP2-19071994.GIF</div>
-                        <img class="archive-img" src="Pictures/FTP2-19071994.GIF" alt="FTP2-19071994.GIF">
-                        <div class="file-desc">Financial Times business section feature: "Juggling the finances" alongside corporate funding executive cartoon.</div>
-                    </div>
-                    <div class="file-meta">Type: Image Scan (FT)</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">Misc-Press-Cutting.GIF</div>
-                        <img class="archive-img" src="Pictures/Misc-Press-Cutting.GIF" alt="Misc-Press-Cutting.GIF">
-                        <div class="file-desc">National news clipping by Roland Gribben: "UK hardboard wins £40m lift", detailing 3i group leadership and 200 jobs created.</div>
-                    </div>
-                    <div class="file-meta">Type: Newspaper Scan</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">tombstone.jpg</div>
-                        <img class="archive-img" src="Pictures/tombstone.jpg" alt="tombstone.jpg">
-                        <div class="file-desc">Acrylic financial tombstone display commemorating the £35,149,000 Management Start-up framework managed via 3i plc.</div>
-                    </div>
-                    <div class="file-meta">Type: Color Photo</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">tombstone_2.jpg</div>
-                        <img class="archive-img" src="Pictures/tombstone_2.jpg" alt="tombstone_2.jpg">
-                        <div class="file-desc">Alternative studio capture of the official 3i corporate start-up investment plaque.</div>
-                    </div>
-                    <div class="file-meta">Type: Color Photo</div>
+        <!-- CHAPTER 1: IMPERIAL ROAD -->
+        <section id="imperial-road">
+            <h2>Imperial Road — The Madness Starts</h2>
+            <p>Malcolm had found his latest backer in the form of one Peter Learmond, a man who had made his millions through creating a company called Sheerness Steel.</p>
+            
+            <div class="profile-block">
+                <img src="Pictures/lea.GIF" class="profile-avatar" alt="Peter Learmond">
+                <div class="profile-content">
+                    <strong>Peter Learmond</strong>
+                    <p>Learmond, who often called himself "Commander", although we were never quite sure whether he left the "Lieutenant" part off the front by accident or on purpose, owned a converted tram-shed in Imperial Road, London.</p>
                 </div>
             </div>
+
+            <p>Learmond was a strange character... there’s so many stories that one could tell about the time in Imperial Road. Quite often he would shout things at the top of his voice, expecting everybody to drop what they were doing and answer him. One of his favorites was <em>"WHAT’S THE TIME?"</em>. After a few months of this, Malcolm bought him a big clock, and placed it in the middle of his desk... but he would still shout <em>"WHAT’S THE TIME?"</em>, to which Malcolm would just go into his office and point at the clock.</p>
+            <p>He would quite often shout out quite bizarre questions: <em>"WHO’S LORD KING’S SECRETARY?"</em>. By this time the new Hardboard Mill had been given the name "Tech-Board" for some while, yet one day he was heard to shout <em>"WHO’S TECH-BOARD?"</em>... lots of coughing ensued.</p>
+
+            <h3>Ongoing Sagas</h3>
+            <p>There seemed to be a lot of ongoing sagas at Imperial Road. Learmond owned an Aston Martin that was forever getting sent to a "specialist" in Wales... lots of irate telephone calls later, and it would arrive back on a transporter, only to be shipped back down to Wales again the following week with outstanding problems.</p>
+            <p>When it was back in London though, it was always funny watching it pull away... there would be no traffic coming for ages, then, just as a car was upon us, it would pull away... every time!</p>
+            <p>There was also the saga of the nighties. Learmond’s daughter used to work for a nightie company, then set up on her own. So we had about 6 months of bizarre phone calls to Malaysia, where her first consignment of nighties were being made, lots of excitement when they arrived, followed by weeks of angst when they found out that the company that they originally worked for were suing them for allegedly ripping off the designs.</p>
+
+            <h3>The Mill Presentations</h3>
+            <p>During this time there was lots of meetings with potential suppliers and potential backers. Every day would see a presentation to some financial institution or other, and a presentation from some manufacturer of presses or saws or process control.</p>
+            <p>These seemed to all blur into one, except when we were getting a visit from a man we christened "Arne Rhinohorn". Arne worked for a Scandinavian machine manufacturer, a lovely man, but a very big man, with a bit of a BO problem. We always pondered about his evening return journey in a cramped little aircraft seat and felt sorry for the person sitting next to him. One day we were horrified to see him get out of a Nissan Micra: <em>"Ah hello, I caught an early flight, so I thought I’d see a few sites of London before our meeting"</em>. It was one of the hottest days of the year. The car didn’t have A/C. It was a very short meeting.</p>
         </section>
 
-        <!-- SECTION 2 -->
-        <section id="executive-profiles">
-            <h2>Executive Profiles & Team Rosters</h2>
-            <div class="file-grid">
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">The-Team.GIF</div>
-                        <img class="archive-img" src="Pictures/The-Team.GIF" alt="The-Team.GIF">
-                        <div class="file-desc">Complete corporate portfolio layout introducing key leadership (Learmond, Graham, Read, Ellis, Spaven, Slater, Parrott).</div>
-                    </div>
-                    <div class="file-meta">Type: Document Graphics</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">lea.GIF</div>
-                        <img class="archive-img" src="Pictures/lea.GIF" alt="lea.GIF">
-                        <div class="file-desc">Greyscale high-contrast portrait framing senior management against a light brick wall layout.</div>
-                    </div>
-                    <div class="file-meta">Type: Portrait Crop</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">mallcy.GIF</div>
-                        <img class="archive-img" src="Pictures/mallcy.GIF" alt="mallcy.GIF">
-                        <div class="file-desc">Formal studio-lit profile framing a senior mustache-styled manager in suit and tie.</div>
-                    </div>
-                    <div class="file-meta">Type: Corporate Photo</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">ralph_hodge.jpg</div>
-                        <img class="archive-img" src="Pictures/ralph_hodge.jpg" alt="ralph_hodge.jpg">
-                        <div class="file-desc">Formal executive headshot capture of corporate leadership team member.</div>
-                    </div>
-                    <div class="file-meta">Type: Greyscale Portrait</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">ted.GIF</div>
-                        <img class="archive-img" src="Pictures/ted.GIF" alt="ted.GIF">
-                        <div class="file-desc">Isolated asset image profile matching Ted Ellis, Human Resources Manager.</div>
-                    </div>
-                    <div class="file-meta">Type: Document Extract</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">tony.GIF</div>
-                        <img class="archive-img" src="Pictures/tony.GIF" alt="tony.GIF">
-                        <div class="file-desc">Isolated asset image profile matching Tony Read, Finance Director.</div>
-                    </div>
-                    <div class="file-meta">Type: Document Extract</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">sue.GIF</div>
-                        <img class="archive-img" src="Pictures/sue.GIF" alt="sue.GIF">
-                        <div class="file-desc">On-site industrial plant portrait capture featuring Sue in her protective safety hard hat.</div>
-                    </div>
-                    <div class="file-meta">Type: Document Extract</div>
+        <!-- CHAPTER 2: OPERATIONAL TEAM -->
+        <section id="the-people">
+            <h2>The Key Figures</h2>
+            <p>A few prominent names recorded during the formative Imperial Road and Wales transition periods:</p>
+
+            <div class="profile-block">
+                <img src="Pictures/tony.GIF" class="profile-avatar" alt="Tony Read">
+                <div class="profile-content">
+                    <strong>Tony Read — Financial Director</strong>
+                    <p>For all of the time at Imperial Road, Tony Read had been "on board" as TechBoard’s Financial Director. Tony remained remarkably jolly throughout and moved to Wales to live through the first years of the plant.</p>
                 </div>
             </div>
-        </section>
 
-        <!-- SECTION 3 -->
-        <section id="infrastructure">
-            <h2>Plant Infrastructure & Operations</h2>
-            <div class="file-grid">
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">Rassau-Sign.GIF</div>
-                        <img class="archive-img" src="Pictures/Rassau-Sign.GIF" alt="Rassau-Sign.GIF">
-                        <div class="file-desc">Welsh Development Agency sign log entry for the "Rassau Industrial Estate / Ystad Ddiwydiannol Rassau".</div>
-                    </div>
-                    <div class="file-meta">Type: Facility Graphic</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">imperial.JPG</div>
-                        <img class="archive-img" src="Pictures/imperial.JPG" alt="imperial.JPG">
-                        <div class="file-desc">High-resolution brand signage print sample: "Imperial Board Products Limited" typography template.</div>
-                    </div>
-                    <div class="file-meta">Type: Logo Asset</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">sdf.JPG</div>
-                        <img class="archive-img" src="Pictures/sdf.JPG" alt="sdf.JPG">
-                        <div class="file-desc">Interior industrial assembly snapshot featuring team members engineering the main facility pipelines.</div>
-                    </div>
-                    <div class="file-meta">Type: Operational Photo</div>
+            <div class="profile-block">
+                <img src="Pictures/austin.GIF" class="profile-avatar" alt="Austin Slater">
+                <div class="profile-content">
+                    <strong>Austin Slater</strong>
+                    <p>Austin re-appeared during the last few months at Imperial Road and moved down to Wales. This was despite him visiting the area where the mill was to be built several weeks before the deal was finalized, returning to report that the location was "Like Beirut".</p>
                 </div>
             </div>
-        </section>
 
-        <!-- SECTION 4 -->
-        <section id="social-history">
-            <h2>Staff Social History & Gatherings</h2>
-            <div class="file-grid">
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">group-1.JPG</div>
-                        <img class="archive-img" src="Pictures/group-1.JPG" alt="group-1.JPG">
-                        <div class="file-desc">Summer event snapshot framing lawn sports with attendee carrying refreshment in foreground.</div>
-                    </div>
-                    <div class="file-meta">Type: Candid Photo</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">group-2.JPG</div>
-                        <img class="archive-img" src="Pictures/group-2.JPG" alt="group-2.JPG">
-                        <div class="file-desc">Wide angle patio party capture showing company staff sitting out by lawn furniture enjoying social hour.</div>
-                    </div>
-                    <div class="file-meta">Type: Candid Photo</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">gs-pt-caz.JPG</div>
-                        <img class="archive-img" src="Pictures/gs-pt-caz.JPG" alt="gs-pt-caz.JPG">
-                        <div class="file-desc">Lawn social capture tracking attendees gathered alongside PA audio setup.</div>
-                    </div>
-                    <div class="file-meta">Type: Candid Photo</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">security.JPG</div>
-                        <img class="archive-img" src="Pictures/security.JPG" alt="security.JPG">
-                        <div class="file-desc">Five staff members sitting on an exterior building bench playing acoustic guitar.</div>
-                    </div>
-                    <div class="file-meta">Type: Candid Photo</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">trevor.JPG</div>
-                        <img class="archive-img" src="Pictures/trevor.JPG" alt="trevor.JPG">
-                        <div class="file-desc">Indoor candid capture profiling team member Trevor serving behind a pub bar.</div>
-                    </div>
-                    <div class="file-meta">Type: Candid Photo</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">tw&jg.JPG</div>
-                        <img class="archive-img" src="Pictures/tw&jg.JPG" alt="tw&jg.JPG">
-                        <div class="file-desc">Relaxed lawn snapshot profiling guests enjoying the afternoon shade on the grass.</div>
-                    </div>
-                    <div class="file-meta">Type: Candid Photo</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">twister-1.JPG</div>
-                        <img class="archive-img" src="Pictures/twister-1.JPG" alt="twister-1.JPG">
-                        <div class="file-desc">Staff party activities snapshot tracking the team playing an outdoor game of Twister.</div>
-                    </div>
-                    <div class="file-meta">Type: Activity Log</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">twister-2.JPG</div>
-                        <img class="archive-img" src="Pictures/twister-2.JPG" alt="twister-2.JPG">
-                        <div class="file-desc">Secondary dynamic angle of the ongoing outdoor garden event activities.</div>
-                    </div>
-                    <div class="file-meta">Type: Activity Log</div>
+            <div class="profile-block">
+                <div class="profile-content" style="padding-left: 10px;">
+                    <strong>Ted Ellis — HR Manager</strong>
+                    <p>Very, Very Welsh, Ted appeared during the final couple of months at Imperial Road and managed plant personnel setups during the opening years.</p>
                 </div>
             </div>
+
+            <p><strong>Additional Operational Staff Notes:</strong></p>
+            <ul>
+                <li><strong>Alan the Chauffeur:</strong> Very Mad.</li>
+                <li><strong>Sandie Coward:</strong> Learmond’s secretary who put up with a lot!</li>
+                <li><strong>Brenda Fyson:</strong> Secretary for TechBoard and alternative businesses inside the London offices.</li>
+            </ul>
         </section>
 
-        <!-- SECTION 5 -->
-        <section id="admin">
-            <h2>HR & Administrative Archive</h2>
-            <div class="file-grid">
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">Inland-Rev.GIF</div>
-                        <img class="archive-img" src="Pictures/Inland-Rev.GIF" alt="Inland-Rev.GIF">
-                        <div class="file-desc">Official UK Inland Revenue Form P45 trace for personnel tracking ending tax cycle 1998.</div>
-                    </div>
-                    <div class="file-meta">Type: Government Scan</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">Job-Seekers.GIF</div>
-                        <img class="archive-img" src="Pictures/Job-Seekers.GIF" alt="Job-Seekers.GIF">
-                        <div class="file-desc">Correspondence copy issued via Tredegar Jobcentre (Gwent) dated April 1998.</div>
-                    </div>
-                    <div class="file-meta">Type: Government Scan</div>
-                </div>
-                <div class="file-card">
-                    <div>
-                        <div class="file-name">mrx2.jpg</div>
-                        <img class="archive-img" src="Pictures/mrx2.jpg" alt="mrx2.jpg">
-                        <div class="file-desc">Office novelty item trace: Desk action figure photo log dated June 2002.</div>
-                    </div>
-                    <div class="file-meta">Type: Internal Oddity</div>
-                </div>
+        <!-- CHAPTER 3: OPERATION & QUALITY CHECKS -->
+        <section id="operation">
+            <h2>Into Operation</h2>
+            <p>After the opening we had a very important quality test – the mill had to run for 24 hours and produce so much hardboard of a certain (non-wavy) quality. On completion of this test the banks would release a whole chunk of money to allow Tech Board to trade until they started making a profit.</p>
+            <p>So, if the plant passed the quality test, the company would continue. If it failed the quality test, there would be no more money and it would have to close. So, did it pass? Of course it did. In all the time up to the quality test the board was wavy, but in a miraculous 24 hours it all came together – the quantity and quality of the board was perfect.</p>
+            <p>It was just really really unfortunate that the moment the quality test was complete, the board went back to being wavy and bits of plant started to break down again.</p>
+            <p>Over the first 12-15 months we were down most of the time. The engineers never left the building, especially Mike Thomas!! Production teams were always cleaning up one mess after another. Money was being spent like water and Malcolm was under increasing pressure.</p>
+            <p>Colin (the bloke who bought the wood... and... well that was it?) walked his dog and spent time in the forests with his suppliers. The Quality of the board at this time was not good. We ended up selling it to somewhere in Spain—which we all found strange considering the whole point of being the only manufacturer based in the UK was to supply the domestic UK market.</p>
+            <p>During this era, Malcolm stepped down as MD and was replaced by George Anderson. Malcy had always noted it was unusual for MDs who kickstart these massive schemes to last more than 18 months. Still, it remains a staggering historic achievement of individual venture-backed funding.</p>
+        </section>
+
+        <!-- CHAPTER 4: THE DEMISE & GATES CLOSE -->
+        <section id="receivership">
+            <h2>...And The Gates Close</h2>
+            <p>One afternoon everyone was called out to the carpark. A list of names was read out and that group of people were asked to go and stand on their own. The remaining group were then told that they no longer had a job. The mill had gone into receivership suddenly—the banks pulled out overnight. The original startup backing had been provided principally by Commander Learmond & 3i.</p>
+            <p>As George Anderson left the site, he promised he would return... and he did, alongside Enron.</p>
+            <p>George then planned the start of the new Tech-Board framework. Peter Evans (Purchasing Manager) had his office located right inside the kitchen, engineering utility and wood deals from there. Unfortunately, Enron spent a massive amount of capital and got nowhere. Production lines failed and failed again.</p>
+            
+            <h3>Controlled Closure</h3>
+            <p>When the second structural end arrived, closure rather than sudden receivership beckoned. Enron did honor all outstanding debts in a controlled wind-down. The reality was that Enron wanted Tech-Board because it could utilize the land behind the plant to construct a gas-fired power station. This plan operated flawlessly until the British government issued a sudden policy moratorium stating that no more power stations of this variant were to be built.</p>
+        </section>
+
+        <!-- THE ARCHIVE INTELLIGENCE & RUMOUR MILL -->
+        <section id="rumour-mill">
+            <h2>The Rumour Mill & Political Connections</h2>
+            
+            <p><strong>Enron Connections:</strong> When Enron collapsed, it hit global news—but locally, we noted that the former chairman of Enron Europe was also the old chairman of Tech-Board: Mr. Ralph Hodge.</p>
+            
+            <blockquote>
+                "Enron's top man in Europe, Ralph Hodge, was awarded a CBE. Outlines showed intentions to utilize channels to challenge support for energy construction restrictions before policy frameworks shifted." <br>
+                <span style="font-size:0.8rem; color:var(--text-muted);">— Contemporary Industrial Review Fragments</span>
+            </blockquote>
+
+            <div class="news-box">
+                <h4>Historical Plant Tracking Notes (Late 2001)</h4>
+                <p><strong>Power Station Disputes:</strong> Local Rassau tenants and residents associations registered heavy objections with the Department of Trade and Industry regarding the industrial zoning modifications planned behind the site since 1998.</p>
+                <p><strong>International Buyout Inquiries:</strong> During the final operational gaps, multiple foreign consortiums reviewed the Ebbw Vale plant infrastructure—including competitive analytical inquiries arriving from industrial groups located in Russia and Australia.</p>
+            </div>
+
+            <div class="meta-footer-note">
+                This historical compilation is meant to look back at a distinct moment in industrial history. It is not our intention to misrepresent anyone or any event, but memories can fail over time. Dedication is held in memory of Mr. Mike Parrott.
             </div>
         </section>
 
     </main>
 
     <footer>
-        <p>&copy; Imperial Board Products Limited Archive &bull; Retrospective Digitalization</p>
+        <p>&copy; The Tech-Board Story Archive &bull; Digitally Preserved by Guy & Pierre</p>
     </footer>
 
 </body>
