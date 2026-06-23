@@ -258,6 +258,7 @@
 </head>
 <body>
 
+    <!-- SIDEBAR NAVIGATION -->
     <aside>
         <div class="sidebar-header">
             <img src="logo-1.gif" alt="Tech-Board Logo" class="site-logo" onerror="this.style.display='none'">
@@ -267,18 +268,22 @@
             </div>
         </div>
         <nav id="sidebar-nav">
-            </nav>
+            <!-- Navigation links injected via JS -->
+        </nav>
     </aside>
 
+    <!-- CONTENT FRAME -->
     <main>
         <article id="content-area">
-            </article>
+            <!-- Dynamic chapter content will slide in here -->
+        </article>
         
         <footer>
             This compilation is dedicated to the memory of Mr. Mike Parrott. Compiled originally by Guy Spaven & Pierre Topping.
         </footer>
     </main>
 
+    <!-- ARCHIVAL TEXT INJECTION ENGINE WITH LIVE ASSETS -->
     <script>
         const chapters = {
             index: {
@@ -311,6 +316,12 @@
                 subtitle: "1989 – 1992: Chasing the Capital",
                 content: `
                     <p>Following the immediate fallout of the 1989 closure, the initial skeletal team—consisting of Malcolm, Sean, Bob, Graeme, Guy, and Hazel—scattered to balance survival with keeping the dream alive. Their primary task was iteratively polishing a complex industrial business plan and pitching to speculative financiers, including brief cross-border exploratory talks with potential backers in France.</p>
+                    
+                    <div class="single-media gallery-item" style="text-align:center; max-width:240px;">
+                        <img src="Pictures/mallcy.GIF" alt="Malcolm Graham" onerror="this.style.display='none'">
+                        <div class="image-caption" style="margin-top:8px;"><strong>Malcolm Graham:</strong> Pushing through the wilderness years to anchor institutional backing.</div>
+                    </div>
+
                     <p>Between 1989 and mid-1992, Malcolm entered the "wilderness years." He moved through a revolving door of temporary financial sponsors who provided short-term office spaces, secretarial tools, and basic overheads while he continuous pitched the project to institutional capital groups.</p>
                     <p>The breakthrough finally arrived in mid-1992. Word filtered back to the team that Malcolm had secured structural backing and anchored a central planning command outpost located on Imperial Road in Fulham, London.</p>
                 `
@@ -453,7 +464,7 @@
                 content: `
                     <p>The third major iteration of the mill was born from a determined under-financed management buyout led by Engineering Manager Huw Lewis, who rallied a dedicated group of workers under a new corporate banner: **Imperial Boards**.</p>
                     
-                    <div class="single-media class="gallery-item" style="text-align:center;">
+                    <div class="single-media gallery-item" style="text-align:center;">
                         <img src="Pictures/imperial.JPG" alt="Imperial Boards Banner Layout" style="max-width:100%; height:auto; border:1px solid var(--border); border-radius:4px; padding:4px;">
                         <div class="image-caption" style="margin-top:8px;">The corporate branding header adopted during the Imperial Boards MBO phase.</div>
                     </div>
