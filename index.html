@@ -49,6 +49,9 @@
         .sidebar-header {
             padding: 24px;
             border-bottom: 1px solid #1e293b;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .sidebar-header h1 {
@@ -63,6 +66,14 @@
             color: var(--sidebar-text);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+        }
+
+        .site-logo {
+            max-width: 80px;
+            height: auto;
+            border-radius: 4px;
+            background: #fff;
+            padding: 4px;
         }
 
         nav {
@@ -154,16 +165,46 @@
             border-radius: 0 4px 4px 0;
         }
 
-        footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
+        /* Modernized Image Layouts */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .gallery-item {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            max-height: 240px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .image-caption {
             font-size: 0.85rem;
             color: #64748b;
             text-align: center;
+            line-height: 1.4;
         }
 
-        /* Table Styling for WATN and Data sections */
+        .single-media {
+            max-width: 480px;
+            margin: 24px auto;
+        }
+
+        /* Table Styling */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -187,19 +228,15 @@
             background-color: #f8fafc;
         }
 
-        /* Placeholder block for images */
-        .image-placeholder {
-            background: #f1f5f9;
-            border: 2px dashed #cbd5e1;
-            padding: 24px;
-            text-align: center;
-            border-radius: 6px;
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
             color: #64748b;
-            margin: 20px 0;
-            font-size: 0.9rem;
+            text-align: center;
         }
 
-        /* Responsive Breakpoints */
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
@@ -223,8 +260,11 @@
 
     <aside>
         <div class="sidebar-header">
-            <h1>The Tech-Board Story</h1>
-            <p>Greenfield Startup Failure</p>
+            <img src="logo-1.gif" alt="Tech-Board Logo" class="site-logo" onerror="this.style.display='none'">
+            <div>
+                <h1>The Tech-Board Story</h1>
+                <p>Greenfield Startup Failure</p>
+            </div>
         </div>
         <nav id="sidebar-nav">
             </nav>
@@ -240,7 +280,6 @@
     </main>
 
     <script>
-        // Compiled dataset containing complete text nodes extracted from your uploaded htm assets
         const chapters = {
             index: {
                 title: "Introduction",
@@ -258,10 +297,10 @@
                 subtitle: "The Pre-History & Catalyst in Sittingbourne, Kent",
                 content: `
                     <p>In 1989, the aging UK Hardboard plant in Kemsley was abruptly shut down. The primary, fatal mechanism was a sudden sky-rocketing of the plant's annual electricity bills by several hundred percent, wiping out all operational profitability overnight.</p>
-                    <p>What baffled the workforce was two core facts during that fateful year:</p>
+                    <p>During the year in which the electricity costs sky-rocketed:</p>
                     <ul>
-                        <li>No additional energy was consumed compared to historical baselines.</li>
-                        <li>The baseline market tariff price of industrial energy had not shifted.</li>
+                        <li>No more energy was consumed, compared with the previous year.</li>
+                        <li>The price of energy did not change.</li>
                     </ul>
                     <p>Shortly after the closure, the remaining integrated paper mills at Kemsley were sold off to a New Zealand conglomerate, Fletcher Challenge. Redundant employees openly grew cynical, wondering if the financial mechanics were a corporate ploy to deliberately load fixed overhead costs onto the hardboard division to artificially polish the balance sheet of the paper mill for sale.</p>
                     <p>Regardless of the underlying reality, Malcolm Graham was already drafting blueprints for a brand new, highly efficient greenfield hardboard production plant to break away from the constraints of Kemsley. The sudden closure acted as the definitive catalyst that pushed his quest into overdrive.</p>
@@ -281,10 +320,19 @@
                 subtitle: "The London Planning Outpost",
                 content: `
                     <p>The strategic phase at Imperial Road formalized the corporate shell of Tech-Board. It was here that complex machinery contracts, European engineering timelines, and core organizational charting began to manifest. Key management characters were onboarded to steer the project toward physical reality:</p>
-                    <p><strong>Tony Read (Financial Director):</strong> Tony was attached early on during the Imperial Road tenure, managing the complex models required by venture capital funds. He committed to moving down to the Welsh valleys to live through the opening phases of operations.</p>
-                    <p><strong>Ted Ellis (HR Manager):</strong> Described as intensely and proudly Welsh, Ted entered the frame during the final closing months of the London office to lay the groundwork for local recruitment and labor contracts in Gwent.</p>
-                    <p><strong>Austin Slater:</strong> Re-appeared during the final months of planning at Imperial Road, coordinating machinery acquisition paths despite early structural friction.</p>
-                    <div class="image-placeholder">[Archival Reference: Embedded portraits of Tony Read, Ted Ellis, and Austin Slater were originally attached to this section]</div>
+                    
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <img src="Pictures/tony.GIF" alt="Tony Read">
+                            <div class="image-caption"><strong>Tony Read (Financial Director):</strong> Attached early during the Imperial Road tenure, managing the complex models required by venture capital funds. He committed to moving down to the Welsh valleys.</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Pictures/austin.GIF" alt="Austin Slater">
+                            <div class="image-caption"><strong>Austin Slater:</strong> Re-appeared during the final months of planning at Imperial Road, coordinating machinery acquisition paths despite early structural friction.</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Ted Ellis (HR Manager):</strong> Very, Very, Welsh, Ted appeared during the last couple of months at Imperial Road, and was appointed as Tech Board's HR Manager to lay the groundwork for local recruitment and labor contracts in Gwent.</p>
                 `
             },
             the_deal: {
@@ -292,18 +340,28 @@
                 subtitle: "Overnight Closings and Corporate Tombstones",
                 content: `
                     <p>The process of finalizing venture capital funding for an industrial operation of this scale is a gruelling exercise. After standard institutional due diligence loops spanning months, all counter-parties, underwriters, and legal teams converged to bind the structural contracts.</p>
-                    <p>Per investment banking tradition, the final signing session was orchestrated entirely overnight. Beginning at 7:00 PM, the teams endured a marathon legal check that stretched until 5:30 AM the following morning as the sun began to rise.</p>
-                    <p>The primary financial foundation was anchored by **Commander Learmond** and institutional venture capital giant **3i**. To mark the closing, the traditional champagne was distributed along with Lucite commemorative corporate "Tombstones" celebrating what was, at that historical juncture, the largest individual venture-capital backed greenfield manufacturing startup in British history.</p>
-                    <div class="image-placeholder">[Archival Reference: Pictures of the 3i Tombstone & legal signing logs FTP1-19071994 / FTP2-19071994]</div>
+                    <p>Per investment banking tradition, the final signing session was orchestrated entirely overnight. Beginning at 7:00 PM, the teams endured a marathon legal check that stretched until 5:30 AM the following morning as the sun began to rise. At that point, everyone drank champagne—a real anticlimax.</p>
+                    
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <img src="Pictures/tombstone.jpg" alt="Venture Capital Tombstone">
+                            <div class="image-caption">The commemorative Lucite "Tombstone" awarded to the original team members to mark the deal closing.</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Pictures/FTP2-19071994.jpg" alt="Signing Log File" onerror="this.src='Pictures/FTP1-19071994.jpg'">
+                            <div class="image-caption">Historical records detailing the closing underwriting assets from July 19, 1994.</div>
+                        </div>
+                    </div>
+                    <p>The primary financial foundation was anchored by **Commander Learmond** and institutional venture capital giant **3i**, marking what was at that time the largest individual venture-capital backed greenfield manufacturing startup in British history.</p>
                 `
             },
             ent_house: {
                 title: "5. Enterprise House",
                 subtitle: "Establishing the Beachhead & Learning Swedish",
                 content: `
-                    <p>With multi-million pound funding locked, operations relocated to South Wales, setting up a physical beachhead at Enterprise House in the Rassau Industrial Estate. The environment was intense, dominated by technical drawings, localized mapping, and immediate vendor onboarding cycles.</p>
-                    <p>Because the primary raw wood processing machinery and core defibrator/refiner assets were sourced from Scandinavian manufacturers (such as Sunds Defibrator), the startup team was subjected to rapid Swedish language training courses to ease engineering data transfers. The training sessions led to classic internal office jokes as Welsh engineering staff clashed phonetically with complex Scandinavian technical phrases.</p>
-                    <p>Concurrently, the team faced its first community management challenge: local residents immediately mobilized a committee to challenge a 24-hour manufacturing facility operating on their doorstep due to concerns over steam, sound, and effluent emissions. Malcolm managed to ease local anxiety during town-hall sessions by famously asserting that the exhaust of a modern refiner system didn't smell of industrial chemicals, but rather shared an olfactory profile with "baking apple pie."</p>
+                    <p>With multi-million pound funding locked, operations relocated to South Wales, setting up a physical beachhead at Enterprise House in the Rassau Industrial Estate. The environment was intense, dominated by technical drawings and immediate vendor onboarding cycles.</p>
+                    <p>Because the primary raw wood processing machinery was sourced from Scandinavian manufacturers (such as Sunds Defibrator), the startup team was subjected to rapid Swedish language training courses. The training sessions led to classic internal office jokes as Welsh engineering staff clashed phonetically with technical phrases like <em>"Shushna bushta ling ling"</em>.</p>
+                    <p>Concurrently, the team faced its first community management challenge: local residents immediately mobilized a committee to challenge a 24-hour manufacturing facility. Malcolm managed to ease local anxiety during town-hall sessions by famously asserting that the exhaust of a modern refiner system didn't smell of industrial chemicals, but rather shared an olfactory profile with "baking apple pie."</p>
                 `
             },
             pant: {
@@ -311,8 +369,8 @@
                 subtitle: "Communal Living & The 'News of the World' Incident",
                 content: `
                     <p>During the intense pre-production and construction phases, commuting executives and engineers shared a communal residence at Pantybaileau House ("Panty"). The historic property provided a lively backdrop to off-duty startup life, managed by local hosts John and Chris.</p>
-                    <p>The house achieved legendary status inside the company history following an unexpected exposé in the *News of the World* tabloid Sunday edition. Titled "To the Manor Porn," the article detailed a covert reporter answering a magazine advertisement which led them to a Friday night adult swinger club hosted directly within the property's bar room.</p>
-                    <p>The investigative journalist surreptitiously pocketed an anonymous comedic photo hanging on the back of the property's restroom door showing staff dressed up in theatrical costumes. It later emerged that the hosts had innocent rented the bar out to local fortune-telling acquaintances on Friday evenings, entirely unaware that the space was being repurposed for adult events. Because the core Tech-Board management team worked a strict Monday-to-Thursday commuting schedule, they entirely missed the events, only discovering them via the Sunday morning papers.</p>
+                    <p>The house achieved legendary status inside the company history following an unexpected exposé in the *News of the World* tabloid Sunday edition titled "To the Manor Porn," which detailed a covert reporter discovering a Friday night adult swinger club hosted directly within the property's bar room.</p>
+                    <p>The investigative journalist surreptitiously pocketed an anonymous comedic photo hanging on the back of the property's restroom door showing staff dressed up in theatrical costumes. It later emerged that the hosts had innocently rented the bar out to local fortune-telling acquaintances, entirely unaware that the space was being repurposed. Because the core Tech-Board management team worked a strict Monday-to-Thursday commuting schedule, they entirely missed the events, only discovering them via the Sunday morning papers.</p>
                 `
             },
             the_build: {
@@ -320,8 +378,18 @@
                 subtitle: "Assembling the Infrastructure",
                 content: `
                     <p>The physical construction of the Rassau mill was a major civil engineering feat. The layout required precision handling of massive heavy equipment loads, custom foundation slabs for the refining plant, and complex assembly lines.</p>
-                    <p>A central technical milestone was the successful installation of the main **headbox**, overseen by specialized engineers. This critical asset was responsible for distributing the slurry of ground-up wood fibers evenly across the forming line to ensure precise board thickness control.</p>
-                    <div class="image-placeholder">[Archival Reference: Original site layout maps, structural engineering photos of the Headbox, and RealPlayer tracking videos are tied to this construction chapter]</div>
+                    
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <img src="Pictures/fh.JPG" alt="The Headbox Assembly">
+                            <div class="image-caption"><strong>The Headbox:</strong> Responsible for distributing the wood fiber slurry evenly across the forming line.</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Pictures/sdf.JPG" alt="Mostin at the Headbox">
+                            <div class="image-caption">Mostin inspecting technical fittings atop the main headbox unit.</div>
+                        </div>
+                    </div>
+                    <p>Engineering teams worked around the clock to anchor the massive Scandinavian systems in place, laying down the foundation lines for what was intended to be a highly automated production loop.</p>
                 `
             },
             tgopen: {
@@ -329,18 +397,33 @@
                 subtitle: "Dignitaries, Suits, and Industrial Optimism",
                 content: `
                     <p>The completion of the mill culminated in an official Grand Opening ceremony. Local political figures, regional development officers from the Welsh Development Agency (WDA), and institutional banking delegates arrived in force to toast the arrival of long-term employment in the Ebbw Vale valley.</p>
-                    <p>The press day featured formal speeches by the Mayor of Gwent, alongside leadership walkthroughs of the automated press lines. Despite the corporate optimism and crisp suits captured in local press clippings, the facility was already facing hidden operational and cash-flow pressures behind the scenes.</p>
+                    
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <img src="Pictures/c51!.JPG" alt="Pierre, Ted and G2">
+                            <div class="image-caption">From left to right: Pierre Topping (sporting his 1960s tie), HR Manager Ted Ellis, and G2 on placement.</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Pictures/c59.JPG" alt="Press Day Presentation">
+                            <div class="image-caption">The formal press gathering featuring a speech by the Mayor of Gwent.</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Pictures/c62!.JPG" alt="Opening Day Attendees">
+                            <div class="image-caption">Sharon (Tony Read's secretary), financial backers, and Ade from Sales during the walkthrough.</div>
+                        </div>
+                    </div>
+                    <p>Despite the corporate optimism and crisp suits captured in local press clippings, the facility was already facing hidden operational and cash-flow pressures behind the scenes.</p>
                 `
             },
             into: {
                 title: "9. Into Operation",
                 subtitle: "Engineering Friction and Cash Flow Realities",
                 content: `
-                    <p>Transitioning from a dry construction phase into 24-hour live industrial operations immediately exposed severe structural strains. The mill entered a grueling period marked by constant system cleanups, engineering overruns, and persistent output quality issues.</p>
+                    <p>Transitioning from construction into 24-hour live industrial operations immediately exposed severe structural strains. The mill entered a grueling period marked by constant system cleanups, engineering overruns, and persistent output quality issues.</p>
                     <p>The core issues that defined early operations included:</p>
                     <ul>
-                        <li><strong>The Annual Hours Contract Failure:</strong> A massive structural error in the drafting of shift worker contracts resulted in the company paying out thousands of unexpected, premium overtime hours, severely crippling early cash-flow forecasts.</li>
-                        <li><strong>Production Bottlenecks:</strong> Engineering teams led by figures like Mike Thomas practically lived on-site, dealing with constant blockages. Early board output failed UK market tolerances and had to be sold off at a loss to alternative buyers in Spain.</li>
+                        <li><strong>The Annual Hours Contract Failure:</strong> A massive structural error in the drafting of shift worker contracts resulted in the company paying out thousands of unexpected premium overtime hours, severely crippling cash-flow forecasts.</li>
+                        <li><strong>Production Bottlenecks:</strong> Plant engineers practically lived on-site, dealing with constant blockages. Early board output failed UK market tolerances and had to be sold off at a loss to alternative buyers in Spain.</li>
                     </ul>
                     <p>As financial pressures mounted, institutional backers moved to restructure leadership. Malcolm Graham was removed as Managing Director and replaced by industry executive George Anderson.</p>
                 `
@@ -350,8 +433,10 @@
                 subtitle: "The First Car Park Receivership",
                 content: `
                     <p>The sudden end of the initial Tech-Board corporate iteration arrived abruptly one afternoon. Without warning, the entire workforce was ordered to assemble outside in the main car park.</p>
-                    <p>A senior manager stepped out with a spreadsheet and systematically read aloud a list of names. Those called were instructed to move to one side; the remaining group was flatly informed that the banks had pulled liquidity overnight, the mill was in receivership, and their employment was terminated effective immediately.</p>
-                    <p>As George Anderson exited the site, he assured the remaining core engineering staff that he would return to resurrect the asset. He fulfilled that promise shortly thereafter by introducing a powerful new corporate savior: **Enron**.</p>
+                    <div class="quote-block">
+                        "A list of names was read out and that group of people were asked to go and stand on their own. The remaining group were then told that they no longer had a job. The mill had gone into receivership."
+                    </div>
+                    <p>Receivership came suddenly when the banks pulled liquidity overnight. As George Anderson exited the site, he assured the remaining core engineering staff that he would return to resurrect the asset. He fulfilled that promise shortly thereafter by introducing a powerful new corporate savior: **Enron**.</p>
                 `
             },
             intor2: {
@@ -359,16 +444,22 @@
                 subtitle: "The Enron Corporate Bailout & Controlled Closure",
                 content: `
                     <p>Under Enron's stewardship, the plant was revived, but under an entirely different strategic agenda. Enron fully honored outstanding local debts, ensuring a controlled, orderly wind-down rather than a chaotic default.</p>
-                    <p>It quickly became apparent to industrial observers that Enron's core interest was not necessarily the long-term processing of hardboard fiber, but rather the strategic value of the land acreage behind the facility, which was perfectly situated to build a major gas-fired power station. When wider macro-economic shifts altered Enron's project pipeline, they executed a clean, systematic closure of the manufacturing lines.</p>
+                    <p>Everybody knew that Enron wanted Tech-Board because it could utilize the land acreage directly behind the facility to build a major gas-fired power station. When wider macro-economic shifts altered Enron's project pipeline, they executed a clean, systematic closure of the manufacturing lines.</p>
                 `
             },
             intor3: {
                 title: "12. ...And Again!",
                 subtitle: "The Imperial Boards Management Buyout Failure",
                 content: `
-                    <p>The third major iteration of the mill was born from a determined under-financed management buyout led by Engineering Manager Huw Lewis. Huw had been planning a takeover scenario well before Enron's exit, rallying a dedicated group of workers under a new corporate banner: **Imperial Boards**.</p>
+                    <p>The third major iteration of the mill was born from a determined under-financed management buyout led by Engineering Manager Huw Lewis, who rallied a dedicated group of workers under a new corporate banner: **Imperial Boards**.</p>
+                    
+                    <div class="single-media class="gallery-item" style="text-align:center;">
+                        <img src="Pictures/imperial.JPG" alt="Imperial Boards Banner Layout" style="max-width:100%; height:auto; border:1px solid var(--border); border-radius:4px; padding:4px;">
+                        <div class="image-caption" style="margin-top:8px;">The corporate branding header adopted during the Imperial Boards MBO phase.</div>
+                    </div>
+                    
                     <p>The name itself was a direct nod to Imperial Road in Fulham, tracking back to the original birthplace of Tech-Board's initial corporate charter. While internal morale and team spirit among the shop-floor teams reached historic highs, the operation was fundamentally crippled by a severe lack of working capital.</p>
-                    <p>Without deep institutional cash reserves to weather raw wood feedstock spikes and machinery maintenance cycles, the end was mathematically inevitable. For the final time, the car park was used to break the bad news to the workforce, and the gates were locked permanently.</p>
+                    <p>The end was mathematically inevitable on limited resources. For the final time, the car park was used to break the bad news to the workforce, and the gates were locked permanently.</p>
                 `
             },
             swww: {
@@ -380,8 +471,19 @@
                     <p><strong>Pierre's Operational Theory:</strong> Pierre pointed straight to rapid, unchecked overhead spend. He noted that localized technician and operator salaries were set far above regional manufacturing benchmarks, which when coupled with the disastrous structural error in the annual hours contract loop, created an unsustainable burn rate that destroyed cash liquidity before production could stabilize.</p>
                 `
             },
+            tb_today: {
+                title: "14. Tech-Board Today",
+                subtitle: "Reflections Looking Down the Valley",
+                content: `
+                    <div class="single-media gallery-item" style="text-align:center; max-width:400px;">
+                        <img src="Pictures/Dcp_1009.jpg" alt="Looking down the Ebbw-Vale valley" style="width:100%; height:auto; border-radius:4px;">
+                        <div class="image-caption" style="margin-top:8px;">The view down the Ebbw-Vale valley, captured just outside the main gates of Tech-Board.</div>
+                    </div>
+                    <p>The time spent working at Tech-Board was highly memorable for all involved. The unique chance to be part of a massive greenfield start-up right on the doorstep of the valley communities is something that may never happen again, regardless of regional development goals.</p>
+                `
+            },
             watn: {
-                title: "14. Where Are They Now?",
+                title: "15. Where Are They Now?",
                 subtitle: "The Historic Employee Tracking Ledger",
                 content: `
                     <p>The original site maintained an updated directory tracking the post-collapse paths of the characters who built and ran the mill:</p>
@@ -423,11 +525,9 @@
 
         // Dynamic Page Swapping Engine
         function switchChapter(chapterKey, element) {
-            // Update active states on sidebar links
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
 
-            // Fade and reload content area
             const area = document.getElementById('content-area');
             const data = chapters[chapterKey];
             
@@ -438,7 +538,6 @@
                 <div class="chapter-body">${data.content}</div>
             `;
             
-            // Auto scroll to top of page on mobile devices
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
